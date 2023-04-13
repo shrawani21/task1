@@ -1,0 +1,39 @@
+import React, { useState } from 'react';
+
+function FizzBuzz() {
+  const [phone, setPhone] = useState('');
+  const [output, setOutput] = useState('');
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const sum = phone.split('').reduce((acc, digit) => acc + parseInt(digit), 0);
+    let result = '';
+    for (let i = 1; i <= sum; i++) {
+      if (i % 4 === 0 && i % 5 === 0) {
+        result += 'FizzBuzz ';
+      } else if (i % 4 === 0) {
+        result += 'Fizz ';
+      } else if (i % 5 === 0) {
+        result += 'Buzz ';
+      } else {
+        result += `${i} `;
+      }
+    }
+    setOutput(result);
+  };
+
+  return (
+    <div>
+      <form onSubmit={handleSubmit}>
+        <label>
+          Phone number:
+          <input type="text" value={phone} onChange={(event) => setPhone(event.target.value)} />
+        </label>
+        <button type="submit">Submit</button>
+      </form>
+      <p>{output}</p>
+    </div>
+  );
+}
+
+export default FizzBuzz;
